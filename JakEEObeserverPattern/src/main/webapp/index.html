@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Jakarta EE 8 Observer Test</title>
+        <meta charset="windows-1252">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>
+            <form method="POST" action="api/salesorder/new">
+                <label for="customer">Customer:</label>
+                <select id="customer" name="customer">
+                    <option value="0">Select Customer</option>
+                    <option value="1">Vanessa Kensington</option>
+                    <option value="2">Basil Exposition</option>
+                    <option value="3">Number Two</option>
+                    <option value="4">Scott Evil</option>
+                    <option value="5">Patty O'Brien</option>
+                    <option value="6">Commander Gilmour</option>
+                    <option value="7">Mustafa</option>
+                </select>
+                <br/>
+                 <label for="product">Product:</label>
+                <select id="product">
+                    <option value="0">Select Product</option>
+                    <option value="1">Widget</option>
+                    <option value="2">Zazzle</option>
+                    <option value="3">Smogden</option>
+                    <option value="4">Frodoor</option>
+                    <option value="5">Bazzlesnitch</option>
+                    <option value="6">Frothbumbble</option>
+                    <option value="7">Hodgeton</option>
+                    <option value="8">Pomplamoose</option>
+                </select>
+                 <label for="quantity">Qty:</label>
+                 <input size="4" type="text" id="quantity"/>
+                 <button type="button"  onclick="addToCart()">Add to cart</button>
+                <br/>
+                <h3>Cart</h3>
+                <ul id="productcart">
+                    
+                </ul>
+                <input type="submit" value="Save" />
+            </form>
+        </div>
+        <script>
+            //just a function to a a couple of products to the sales order
+            function addToCart(){
+                var newitem = document.createElement("li");
+                 var iprod = document.createElement("input");
+                 var iqty = document.createElement("input");
+                var selectedproduct=document.getElementById("product");
+                var selectedqty=document.getElementById("quantity");
+                var pcart=document.getElementById("productcart");
+                
+                iprod.name="product_"+selectedproduct.value;
+                iprod.type="text";
+                iprod.setAttribute("readonly",true);
+                iprod.value=selectedproduct.options[selectedproduct.selectedIndex].text;
+                
+                iqty.name="quantity_"+selectedproduct.value;
+                iqty.type="text";
+                iqty.setAttribute("readonly",true);
+                iqty.value=selectedqty.value;
+                
+                newitem.appendChild(iqty);
+                newitem.appendChild(iprod);
+                pcart.appendChild(newitem);
+                
+                selectedqty.value="";
+                selectedproduct.value=0;
+               
+                
+                
+                
+            }
+        </script>
+    </body>
+</html>
