@@ -8,7 +8,9 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 /**
- *
+ * Event listener that will rebuild
+ * a total sales report every time
+ * a new sales order created event is fired
  * @author Heath
  */
 @Singleton

@@ -45,6 +45,7 @@ public class SalesReportServlet extends HttpServlet {
             out.println("<h3>Compiled at:"+salesReportService.getSalesReport().getReportGenerationDate()+"</h3>");
             out.println("<div>");
             out.println("<p>"+String.format("Total Sales: $%.2f, Avg Sales per Order: $%.2f",salesReportService.getSalesReport().getTotalSales(),salesReportService.getSalesReport().getAvgSalesPerOrder())+"</p>");
+            out.println("<a href='/JakEEObeserverPattern/'>Back to Order Form</a>");
             out.println("</div>");
             out.println("</body>");
             out.println("</html>");

@@ -4,75 +4,210 @@
         <title>Jakarta EE 8 Observer Test</title>
         <meta charset="windows-1252">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            *{
+                box-sizing: border-box;
+                margin:0;
+                padding:0;
+            }
+            body{
+                font-family: arial,sans-serif;
+                background:#333;
+                margin-top:100px;
+            }
+            a{
+                color:#fff;
+            }
+            h1{
+                color: #fff;
+                padding: 10px 20px;
+                margin-bottom: 20px;
+            }
+            h3{color:#fff;}
+            form{
+
+                padding: 10px 20px;
+            }
+            li{
+                list-style: none;
+
+            }
+            li input{
+                display:inline;
+            }
+            .container{
+
+                background:#555;
+                max-width:500px; 
+                margin:auto;
+                line-height: 1.7em;
+            }
+
+            .form-group{
+                width:100%;
+                padding-bottom: 20px;
+            }
+            .form-group .form-control{
+                display: block;
+            }
+            label{
+                font-weight: 800;
+                color:#fff;
+                padding: 10px 0;
+            }
+            input{
+                width:100%;
+                padding: 10px 0;
+            }
+            select{
+                width:100%;
+                padding: 10px 0;
+            }
+            .btn{
+                background: #AAA;
+                display: block;
+                width: 100%;
+                border:none;
+                padding: 10px 20px;
+                margin:10px 0px;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+            .btn:hover{
+                background: #ccc; 
+            }
+
+        </style>
     </head>
     <body>
-        <div>
-            <form method="POST" action="api/salesorder/new">
-                <label for="customer">Customer:</label>
-                <select id="customer" name="customer">
-                    <option value="0">Select Customer</option>
-                    <option value="1">Vanessa Kensington</option>
-                    <option value="2">Basil Exposition</option>
-                    <option value="3">Number Two</option>
-                    <option value="4">Scott Evil</option>
-                    <option value="5">Patty O'Brien</option>
-                    <option value="6">Commander Gilmour</option>
-                    <option value="7">Mustafa</option>
-                </select>
-                <br/>
-                 <label for="product">Product:</label>
-                <select id="product">
-                    <option value="0">Select Product</option>
-                    <option value="1">Widget</option>
-                    <option value="2">Zazzle</option>
-                    <option value="3">Smogden</option>
-                    <option value="4">Frodoor</option>
-                    <option value="5">Bazzlesnitch</option>
-                    <option value="6">Frothbumbble</option>
-                    <option value="7">Hodgeton</option>
-                    <option value="8">Pomplamoose</option>
-                </select>
-                 <label for="quantity">Qty:</label>
-                 <input size="4" type="text" id="quantity"/>
-                 <button type="button"  onclick="addToCart()">Add to cart</button>
+        <div class="container">
+            <h1>Order Form</h1>
+            
+            <form>
+                <div class="form-group">
+                    <label class="form-control" for="customer">Customer:</label>
+                    <select class="form-control" id="customer" name="customer">
+                        <option value="0">Select Customer</option>
+                        <option value="1">Vanessa Kensington</option>
+                        <option value="2">Basil Exposition</option>
+                        <option value="3">Number Two</option>
+                        <option value="4">Scott Evil</option>
+                        <option value="5">Patty O'Brien</option>
+                        <option value="6">Commander Gilmour</option>
+                        <option value="7">Mustafa</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-control" for="product">Product:</label>
+                    <select class="form-control" id="product">
+                        <option value="0">Select Product</option>
+                        <option value="1">Widget</option>
+                        <option value="2">Zazzle</option>
+                        <option value="3">Smogden</option>
+                        <option value="4">Frodoor</option>
+                        <option value="5">Bazzlesnitch</option>
+                        <option value="6">Frothbumbble</option>
+                        <option value="7">Hodgeton</option>
+                        <option value="8">Pomplamoose</option>
+                    </select>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="form-control" for="quantity">Qty:</label>
+                    <input class="form-control" size="4" type="text" id="quantity"/>
+                </div>
+
+                <button class="form-control btn" type="button"  onclick="addToCart()">Add to cart</button>
+                <input type="submit" class="btn" value="Save" />
+                <a href="salesreport">View Sales Report</a>
                 <br/>
                 <h3>Cart</h3>
                 <ul id="productcart">
-                    
+
                 </ul>
-                <input type="submit" value="Save" />
+
             </form>
         </div>
         <script>
             //just a function to a a couple of products to the sales order
-            function addToCart(){
+            function addToCart() {
                 var newitem = document.createElement("li");
-                 var iprod = document.createElement("input");
-                 var iqty = document.createElement("input");
-                var selectedproduct=document.getElementById("product");
-                var selectedqty=document.getElementById("quantity");
-                var pcart=document.getElementById("productcart");
-                
-                iprod.name="product_"+selectedproduct.value;
-                iprod.type="text";
-                iprod.setAttribute("readonly",true);
-                iprod.value=selectedproduct.options[selectedproduct.selectedIndex].text;
-                
-                iqty.name="quantity_"+selectedproduct.value;
-                iqty.type="text";
-                iqty.setAttribute("readonly",true);
-                iqty.value=selectedqty.value;
-                
+                var iprod = document.createElement("input");
+                var iqty = document.createElement("input");
+                var selectedproduct = document.getElementById("product");
+                var selectedqty = document.getElementById("quantity");
+                var pcart = document.getElementById("productcart");
+
+                iprod.name = "product_" + selectedproduct.value;
+                iprod.type = "text";
+                iprod.setAttribute("readonly", true);
+                iprod.value = selectedproduct.options[selectedproduct.selectedIndex].text;
+
+                iqty.name = "quantity_" + selectedproduct.value;
+                iqty.type = "text";
+                iqty.setAttribute("readonly", true);
+                iqty.value = selectedqty.value;
+
                 newitem.appendChild(iqty);
                 newitem.appendChild(iprod);
                 pcart.appendChild(newitem);
-                
-                selectedqty.value="";
-                selectedproduct.value=0;
-               
-                
-                
-                
+
+                selectedqty.value = "";
+                selectedproduct.value = 0;
+
+
+
+
+            }
+
+            //Handle form submit
+            const formElem = document.querySelector('form');
+            formElem.addEventListener('submit', (e) => {
+                // on form submission, prevent default
+                e.preventDefault();
+
+                // construct a FormData object, which fires the formdata event
+                new FormData(formElem);
+            });
+            formElem.addEventListener('formdata', (e) => {
+                console.log('formdata fired');
+
+                // Get the form data from the event object
+                let data = e.formData;
+                for (var value of data.values()) {
+                    console.log(value);
+                }
+
+                // submit the data via XHR
+                let request = new XMLHttpRequest();
+                request.open("POST", "api/salesorder/new");
+                request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+                request.onload = function () {
+                    if (request.readyState === request.DONE) {
+                        if (request.status === 200) {
+                            console.log(request.response);
+                            console.log(request.responseText);
+
+                            var node = document.getElementById("productcart");
+                            node.querySelectorAll('*').forEach(n => n.remove());
+                            formElem.reset();
+                        }
+                    }
+                };
+                request.send(urlencodeFormData(data));
+            });
+            function urlencodeFormData(fd) {
+                var s = '';
+                function encode(s) {
+                    return encodeURIComponent(s).replace(/%20/g, '+');
+                }
+                for (var pair of fd.entries()) {
+                    if (typeof pair[1] == 'string') {
+                        s += (s ? '&' : '') + encode(pair[0]) + '=' + encode(pair[1]);
+                    }
+                }
+                return s;
             }
         </script>
     </body>
